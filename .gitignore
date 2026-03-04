@@ -4,3 +4,4 @@ venv/
 .env
 addresses.db
 .pytest_cache/
+.DS_Store
