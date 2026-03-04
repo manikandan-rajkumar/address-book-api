@@ -63,9 +63,7 @@ def test_update_address(client):
 
     response = client.put(
         f"/api/v1/addresses/{address_id}",
-        json={
-            "street": "New Street"
-        },
+        json={"street": "New Street"},
     )
 
     assert response.status_code == 200

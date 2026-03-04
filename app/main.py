@@ -1,9 +1,10 @@
 from fastapi import FastAPI
+
+from app.core.config import settings
+from app.core.logger import setup_logger
 from app.db.base import Base
 from app.db.session import engine
 from app.routes.address import router
-from app.core.logger import setup_logger
-from app.core.config import settings
 
 setup_logger()
 

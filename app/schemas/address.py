@@ -1,5 +1,6 @@
-from pydantic import BaseModel, Field, ConfigDict
 from typing import Optional
+
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class AddressBase(BaseModel):
@@ -12,6 +13,7 @@ class AddressBase(BaseModel):
 
 class AddressCreate(AddressBase):
     pass
+
 
 class AddressUpdate(BaseModel):
     street: Optional[str] = None

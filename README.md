@@ -145,7 +145,23 @@ venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-## 4. Run the API
+## 4. Environment Configuration
+
+Configuration values are loaded from:
+
+```
+.env
+```
+
+Example:
+
+```
+DATABASE_URL=sqlite:///./addresses.db
+LOG_LEVEL=INFO
+API_VERSION=/api/v1
+```
+
+## 5. Run the API
 
 ```
 uvicorn app.main:app --reload
@@ -297,22 +313,6 @@ pre-commit run --all-files
 ```
 
 These checks will automatically run before every commit.
-
----
-
-# Docker (Optional)
-
-Build image:
-
-```
-docker build -t address-book-api .
-```
-
-Run container:
-
-```
-docker run -p 8000:8000 address-book-api
-```
 
 ---
 

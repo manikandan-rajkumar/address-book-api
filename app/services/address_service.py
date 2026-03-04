@@ -1,7 +1,8 @@
-from sqlalchemy.orm import Session
-from geopy.distance import geodesic
-from typing import List
 import logging
+from typing import List
+
+from geopy.distance import geodesic
+from sqlalchemy.orm import Session
 
 from app.models.address import Address
 from app.schemas.address import AddressCreate, AddressUpdate
@@ -18,7 +19,9 @@ def create_address(db: Session, address: AddressCreate) -> Address:
     return db_address
 
 
-def update_address(db: Session, address_id: int, data: AddressUpdate) -> Address:
+def update_address(
+    db: Session, address_id: int, data: AddressUpdate
+) -> Address:
     address = db.get(Address, address_id)
     if not address:
         logger.warning(f"Address id={address_id} not found for update")
@@ -31,6 +34,7 @@ def update_address(db: Session, address_id: int, data: AddressUpdate) -> Address
     db.refresh(address)
     logger.info(f"Address updated id={address_id}")
     return address
+
 
 def delete_address(db: Session, address_id: int) -> bool:
     address = db.get(Address, address_id)
@@ -63,8 +67,6 @@ def get_nearby_addresses(
         if dist <= distance_km:
             nearby.append(addr)
 
-    logger.info(
-        f"Found {len(nearby)} addresses within {distance_km} km"
-    )
+    logger.info(f"Found {len(nearby)} addresses within {distance_km} km")
 
     return nearby

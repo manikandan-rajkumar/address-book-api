@@ -1,14 +1,11 @@
+from typing import List
+
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from typing import List
 
 from app.db.session import SessionLocal
 from app.models.address import Address
-from app.schemas.address import (
-    AddressCreate,
-    AddressUpdate,
-    AddressResponse,
-)
+from app.schemas.address import AddressCreate, AddressResponse, AddressUpdate
 from app.services import address_service
 
 router = APIRouter(prefix="/addresses", tags=["Addresses"])
@@ -54,13 +51,13 @@ def nearby_addresses(
     distance_km: float,
     db: Session = Depends(get_db),
 ):
-    return address_service.get_nearby_addresses(
-        db, lat, lon, distance_km
-    )
+    return address_service.get_nearby_addresses(db, lat, lon, distance_km)
+
 
 @router.get("/", response_model=list[AddressResponse])
 def get_all_addresses(db: Session = Depends(get_db)):
     return db.query(Address).all()
+
 
 @router.get("/{address_id}", response_model=AddressResponse)
 def get_address(address_id: int, db: Session = Depends(get_db)):
