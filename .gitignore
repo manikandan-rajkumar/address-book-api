@@ -1,7 +1,7 @@
-__pycache__/
-*.pyc
-venv/
+.DS_Store
 .env
+venv/
+__pycache__/
+.idea/
 addresses.db
 .pytest_cache/
-.DS_Store
